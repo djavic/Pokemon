@@ -1,14 +1,16 @@
 package es.djavic.pokemon;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
 
 public class TextUI {
 
 	private Game game;
-	private Pokemon allPokemons[];
+
 	Pokemon cinderoar;
 	Pokemon tremorok;
+	Pokemon charmander;
 
 	/**
 	 * 
@@ -18,72 +20,74 @@ public class TextUI {
 	 */
 	public TextUI(Game game) {
 		this.game = game;
-		allPokemons = new Pokemon[2];
-		cinderoar = new Pokemon("Cinderoar",Atribute.Pyrus,20,5,100);
-		tremorok = new Pokemon("Tremorok",Atribute.Subterra,10,30,250);
+
 	}
 
 	public void start() {
 		int menu = 0;
 		int combatMenu = 0;
+		PokemonArray call;
 		
-		allPokemons[0] = cinderoar;
-		allPokemons[1] = tremorok;
-		
+
+	
 		try {
-			System.out.println("adhgasid");
-			ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream("../etc/data.dat"));
-			data.writeObject(allPokemons);
-			data.close(); 
-		}catch(Exception e) {
+			call = new PokemonArray(100);
 			
-		}
+			call.createPokemons();
+			ObjectInputStream readData = new ObjectInputStream(new FileInputStream("etc/data.dat"));
 
-		do {
+			Pokemon[] allPokemons = (Pokemon[]) readData.readObject();
 
-			//try {
+			readData.close();
+
+			do {
+
+				// try {
 
 				mainMenu();
-
+				
 				menu = Keyboard.readInteger();
 
 				switch (menu) {
 				case 1:
-					
-					for(int i = 0; i <= 1;i++) {
+
+					for (int i = 0; i < call.pokemonCount(); i++) {
 						System.out.println(allPokemons[i].toString());
-						
+
 					}
-					
+
 					System.out.println("\n");
 					break;
 				case 2:
-					
+
 					break;
 				case 3:
-					
+
 					do {
 						combatMenu();
 						combatMenu = Keyboard.readInteger();
-						
-					}while(0 < combatMenu && combatMenu < 3);
-					
+
+					} while (0 < combatMenu && combatMenu < 3);
+
 					break;
 				case 4:
-					
+
 					break;
 				default:
 					System.out.println("Invalid option");
 					break;
 				}
 				/*
-			} catch (PokemonExceptions e) {
-				System.out.println(e.getMessage());
-				
-			}
-			*/
+				 * } catch (PokemonExceptions e) { System.out.println(e.getMessage());
+				 * 
+				 * }
+				 */
 
-		} while (0 < menu && menu <= 4);
+			} while (0 < menu && menu <= 4);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 	}
 
@@ -98,12 +102,12 @@ public class TextUI {
 	}
 
 	private void combatMenu() {
-		
+
 		System.out.println("Chose an option");
 		System.out.println("1-Atack");
 		System.out.println("2-Change");
 		System.out.println("3-Surrender");
-		
+
 	}
 
 }
