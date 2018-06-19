@@ -29,11 +29,12 @@ public class Pokemon {
 		this.defense = defense;
 		this.lifePoints = lifeppoints;
 	}
+
 	/**
 	 * 
 	 * @param pokemon
 	 * 
-	 * Class copy builder
+	 *            Class copy builder
 	 */
 
 	public Pokemon(Pokemon pokemon) {
@@ -71,9 +72,6 @@ public class Pokemon {
 			this.lifePoints = value;
 		}
 	}
-	
-	public void add(Pokemon pokemon) {
-		
-	}
+
 
 }
