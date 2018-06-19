@@ -1,7 +1,10 @@
 package es.djavic.pokemon;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+
+
 
 public class PokemonArray {
 
@@ -17,7 +20,7 @@ public class PokemonArray {
 		Pokemon charmander = new Pokemon("Charmander", Atribute.Pyrus, 5, 10, 70);
 		allPokemons[2] = charmander;
 		Pokemon adsads = new Pokemon("adasd", Atribute.Pyrus, 5, 10, 70);
-		//allPokemons[3] = adsads;
+		allPokemons[3] = adsads;
 	}
 
 	public int pokemonCount() {
@@ -34,8 +37,11 @@ public class PokemonArray {
 
 	public void createPokemons() {
 		try {
-
-			ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream("etc/data.dat"));
+			
+			File directory = new File("data"); //Creamos la carpeta etc si no esta creada
+			directory.mkdir();
+			
+			ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream("data/data.dat"));
 
 			data.writeObject(allPokemons);
 			data.close();

@@ -32,9 +32,8 @@ public class TextUI {
 	
 		try {
 			call = new PokemonArray(100);
-			
 			call.createPokemons();
-			ObjectInputStream readData = new ObjectInputStream(new FileInputStream("etc/data.dat"));
+			ObjectInputStream readData = new ObjectInputStream(new FileInputStream("data/data.dat"));
 
 			Pokemon[] allPokemons = (Pokemon[]) readData.readObject();
 
