@@ -1,9 +1,14 @@
 package es.djavic.pokemon;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 public class TextUI {
 
 	private Game game;
+	private Pokemon allPokemons[];
+	Pokemon cinderoar;
+	Pokemon tremorok;
 
 	/**
 	 * 
@@ -13,11 +18,26 @@ public class TextUI {
 	 */
 	public TextUI(Game game) {
 		this.game = game;
+		allPokemons = new Pokemon[2];
+		cinderoar = new Pokemon("Cinderoar",Atribute.Pyrus,20,5,100);
+		tremorok = new Pokemon("Tremorok",Atribute.Subterra,10,30,250);
 	}
 
 	public void start() {
 		int menu = 0;
 		int combatMenu = 0;
+		
+		allPokemons[0] = cinderoar;
+		allPokemons[1] = tremorok;
+		
+		try {
+			System.out.println("adhgasid");
+			ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream("../etc/data.dat"));
+			data.writeObject(allPokemons);
+			data.close(); 
+		}catch(Exception e) {
+			
+		}
 
 		do {
 
@@ -30,6 +50,12 @@ public class TextUI {
 				switch (menu) {
 				case 1:
 					
+					for(int i = 0; i <= 1;i++) {
+						System.out.println(allPokemons[i].toString());
+						
+					}
+					
+					System.out.println("\n");
 					break;
 				case 2:
 					

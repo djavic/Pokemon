@@ -1,6 +1,8 @@
 package es.djavic.pokemon;
 
-public class Pokemon {
+import java.io.Serializable;
+
+public class Pokemon implements Serializable {
 
 	/**
 	 * @author djavic
@@ -39,7 +41,7 @@ public class Pokemon {
 
 	public Pokemon(Pokemon pokemon) {
 		this.name = pokemon.getName();
-		this.atribute = pokemon.getAtrinute();
+		this.atribute = pokemon.getAtribute();
 		this.atack = pokemon.getAtack();
 		this.defense = pokemon.getDefense();
 		this.lifePoints = pokemon.getLifePoints();
@@ -49,7 +51,7 @@ public class Pokemon {
 		return this.name;
 	}
 
-	public Atribute getAtrinute() {
+	public Atribute getAtribute() {
 		return this.atribute;
 	}
 
@@ -71,6 +73,12 @@ public class Pokemon {
 		} else {
 			this.lifePoints = value;
 		}
+	}
+	
+	
+	public String toString() {
+		
+		return getName() + ": " + getAtribute();
 	}
 
 

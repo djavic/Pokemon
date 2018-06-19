@@ -31,7 +31,7 @@ public class Game {
 	}
 	
 	
-	public void add() {
+	public void add(Pokemon pokemon) {
 		
 	}
 

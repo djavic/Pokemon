@@ -10,8 +10,8 @@ public class MainPokemon {
 		
 		String gameName = args[0];
 		int teamSize = Integer.parseInt(args[1]);
-		String playerOneName = args[3];
-		String playerTwoName = args[4];
+		String playerOneName = args[2];
+		String playerTwoName = args[3];
 		
 		Game game = new Game(gameName, teamSize, playerOneName, playerTwoName);
 		TextUI ui = new TextUI(game);
