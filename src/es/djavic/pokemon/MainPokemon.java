@@ -18,9 +18,9 @@ public class MainPokemon {
 		
        
 		Game game = new Game(gameName, teamSize, playerOneName, playerTwoName);
+		PokemonArray call = new PokemonArray(100); //Creamos el objeto para crear el .dat
 		
 		TextUI ui = new TextUI(game,allPokemonSize);
-		PokemonArray call = new PokemonArray(100); //Creamos el objeto para crear el .dat
 		call.createPokemons();//llamamos para que se cree el .dat
 		
 		ui.start();
