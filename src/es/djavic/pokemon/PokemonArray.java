@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
-
-
 public class PokemonArray {
 
 	private Pokemon allPokemons[];
@@ -22,7 +20,7 @@ public class PokemonArray {
 		Pokemon adsads = new Pokemon("adasd", Atribute.Pyrus, 5, 10, 70);
 		allPokemons[3] = adsads;
 	}
-
+/*
 	public int pokemonCount() {
 		int count = 0;
 
@@ -34,13 +32,14 @@ public class PokemonArray {
 		}
 		return count;
 	}
+	*/
 
 	public void createPokemons() {
 		try {
-			
-			File directory = new File("data"); //Creamos la carpeta etc si no esta creada
+
+			File directory = new File("data"); // Creamos la carpeta etc si no esta creada
 			directory.mkdir();
-			
+
 			ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream("data/data.dat"));
 
 			data.writeObject(allPokemons);

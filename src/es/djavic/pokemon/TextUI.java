@@ -3,57 +3,62 @@ package es.djavic.pokemon;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
-
 public class TextUI {
 
 	private Game game;
-
-	Pokemon cinderoar;
-	Pokemon tremorok;
-	Pokemon charmander;
+	private Pokemon[] allPokemons;
+	private int allPokemonSize;
 
 	/**
 	 * 
 	 * @param game
 	 * 
 	 *            class builder
+	 * @param allPokemonSize
 	 */
-	public TextUI(Game game) {
+	public TextUI(Game game, int allPokemonSize) {
 		this.game = game;
+		this.allPokemonSize = allPokemonSize;
 
+		try {
+			ObjectInputStream readData = new ObjectInputStream(new FileInputStream("data/data.dat"));
+
+			allPokemons = (Pokemon[]) readData.readObject();
+
+			readData.close();
+
+		} catch (Exception e) {
+			
+		}
+	}
+
+	public int getAllPokemonSize() {
+		return this.allPokemonSize;
 	}
 
 	public void start() {
 		int menu = 0;
 		int combatMenu = 0;
-		PokemonArray call;
-		
 
-	
-		try {
-			call = new PokemonArray(100);
-			call.createPokemons();
-			ObjectInputStream readData = new ObjectInputStream(new FileInputStream("data/data.dat"));
+		do {
 
-			Pokemon[] allPokemons = (Pokemon[]) readData.readObject();
-
-			readData.close();
-
-			do {
-
-				// try {
+			try {
 
 				mainMenu();
-				
+				String chosenPokemon;
 				menu = Keyboard.readInteger();
 
 				switch (menu) {
 				case 1:
 
-					for (int i = 0; i < call.pokemonCount(); i++) {
+					for (int i = 0;i < this.allPokemonSize;i++) {
 						System.out.println(allPokemons[i].toString());
 
 					}
+
+					chosenPokemon = Keyboard.readString();
+
+					game.add(chosenPokemon);
 
 					System.out.println("\n");
 					break;
@@ -76,17 +81,13 @@ public class TextUI {
 					System.out.println("Invalid option");
 					break;
 				}
-				/*
-				 * } catch (PokemonExceptions e) { System.out.println(e.getMessage());
-				 * 
-				 * }
-				 */
 
-			} while (0 < menu && menu <= 4);
+			} catch (PokemonExceptions e) {
+				System.out.println(e.getMessage());
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+			}
+
+		} while (0 < menu && menu <= 4);
 
 	}
 
