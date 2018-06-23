@@ -20,7 +20,7 @@ public class PokemonArray {
 		Pokemon adsads = new Pokemon("adasd", Atribute.Pyrus, 5, 10, 70);
 		allPokemons[3] = adsads;
 	}
-	/*
+	
 	public int pokemonCount() {
 		int count = 0;
 
@@ -32,7 +32,7 @@ public class PokemonArray {
 		}
 		return count;
 	}
-	*/
+	
 	
 
 	public void createPokemons() {
