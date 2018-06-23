@@ -45,6 +45,9 @@ public class TextUI {
 			try {
 
 				mainMenu();
+				System.out.println(game.getPlayerOneName() + "'s team");
+				System.out.println(game.showInformation());
+				System.out.println(game.getPlayerTwoName() + "'s team");
 				String chosenPokemon;
 				menu = Keyboard.readInteger();
 
@@ -63,7 +66,10 @@ public class TextUI {
 					System.out.println("\n");
 					break;
 				case 2:
-
+					String pokemonToRemove;
+					game.showInformation();
+					pokemonToRemove = Keyboard.readString();
+					game.removePokemon(pokemonToRemove);
 					break;
 				case 3:
 

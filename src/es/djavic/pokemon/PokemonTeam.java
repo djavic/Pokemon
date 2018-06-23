@@ -16,25 +16,24 @@ public class PokemonTeam {
 	}
 
 	public void add(Pokemon newPokemon) throws PokemonExceptions {/** Metodo para aniadir participante **/
-		
-	if(newPokemon == null) {
-		System.out.println("null");
-		throw new PokemonExceptions("Pokemon error: It doesnt exits");
-		
-	}else if (pokemons.length == this.next) {
-		System.out.println("espacio");
-			
+
+		if (newPokemon == null) {
+
+			throw new PokemonExceptions("Pokemon error: It doesnt exits");
+
+		} else if (pokemons.length == this.next) {
+			System.out.println("espacio");
+
 			throw new PokemonExceptions("Pokemon Error: No more space in the team left");
 
 		} else if (isSameName(newPokemon.getName()) != null) {
-			System.out.println("repe");
-		
+
 			throw new PokemonExceptions("Add pokemon error: Pokemon " + newPokemon.getName() + " already in the team");
 
-		} else { 
-			System.out.println("OK");
+		} else {
+
 			pokemons[this.next++] = new Pokemon(newPokemon);
-			
+
 		}
 	}
 
@@ -48,6 +47,37 @@ public class PokemonTeam {
 			}
 		}
 		return out;
+	}
+
+	public void remove(Pokemon pokemonToRemove) throws PokemonExceptions {
+
+		int signal = 0;
+		int flag = 1;
+
+		if (pokemonToRemove == null) {
+			throw new PokemonExceptions("The pokemon is not in the team");
+		}
+
+		for (int i = 0; i < this.next; i++) {
+
+			if (pokemonToRemove != null && pokemonToRemove.getName().equals(pokemons[i].getName())) {
+				pokemons[i] = null;
+				signal = i;
+				flag = 0;
+
+			}
+		}
+
+		reorder(signal);
+
+	}
+
+	public void reorder(int init) {
+
+		for (int i = init; i < this.next - 1; i++) {
+			pokemons[i] = pokemons[i + 1];
+		}
+		this.next--;
 	}
 
 	public String toString() {

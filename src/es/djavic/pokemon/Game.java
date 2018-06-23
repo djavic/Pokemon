@@ -1,5 +1,6 @@
 package es.djavic.pokemon;
 
+import java.awt.Choice;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
@@ -10,7 +11,7 @@ public class Game {
 	private String playerOneName;
 	private String playerTwoName;
 	private Pokemon[] allPokemons;
-	
+
 	private PokemonTeam pokemonTeam;
 
 	public Game(String gameName, int teamSize, String playerOneName, String playerTwoName) {
@@ -50,17 +51,25 @@ public class Game {
 
 	public void add(String pokemon) throws PokemonExceptions {
 		Pokemon chosenPokemon = null;
-		for(int i = 0; i < pokemonCount(); i++) {
-			
-			if(pokemon.equals(allPokemons[i].getName()) && allPokemons[i] != null) {
-				
+		for (int i = 0; i < pokemonCount(); i++) {
+
+			if (pokemon.equals(allPokemons[i].getName()) && allPokemons[i] != null) {
+
 				chosenPokemon = allPokemons[i];
 			}
 		}
-		
+
 		pokemonTeam.add(chosenPokemon);
 	}
 	
+	public void removePokemon(String pokemon) throws PokemonExceptions {
+		
+		Pokemon pokemonToRemove = pokemonTeam.isSameName(pokemon);
+		
+		pokemonTeam.remove(pokemonToRemove);
+		
+	}
+
 	public int pokemonCount() {
 		int count = 0;
 
@@ -71,6 +80,11 @@ public class Game {
 			}
 		}
 		return count;
+	}
+	
+	
+	public String showInformation() {
+		return pokemonTeam.toString() + "\n";
 	}
 
 }
